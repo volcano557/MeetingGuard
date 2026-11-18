@@ -1,0 +1,121 @@
+syntax = "proto3";
+
+option csharp_namespace = "MeetingAgent.Transport.Proto";
+
+package meetingagent;
+
+service DetectionAgentService {
+  rpc Stream (stream ClientEnvelope) returns (stream ServerEnvelope);
+}
+
+enum RiskLevelProto {
+  RISK_LEVEL_INFO = 0;
+  RISK_LEVEL_LOW = 1;
+  RISK_LEVEL_MEDIUM = 2;
+  RISK_LEVEL_HIGH = 3;
+  RISK_LEVEL_CRITICAL = 4;
+}
+
+message ClientEnvelope {
+  oneof payload {
+    SessionStartMessage session_start = 1;
+    SessionStopMessage session_stop = 2;
+    VideoFrameMessage video_frame = 3;
+    AudioChunkMessage audio_chunk = 4;
+    HealthPingMessage ping = 5;
+  }
+}
+
+message ServerEnvelope {
+  oneof payload {
+    DetectionResultMessage detection_result = 1;
+    AgentCommandMessage command = 2;
+    HealthPongMessage pong = 3;
+    ErrorMessage error = 4;
+  }
+}
+
+message SessionStartMessage {
+  string session_id = 1;
+  int64 timestamp_utc_ms = 2;
+  string agent_version = 3;
+  string hostname = 4;
+  int32 capture_fps = 5;
+  int32 audio_sample_rate = 6;
+}
+
+message SessionStopMessage {
+  string session_id = 1;
+  int64 timestamp_utc_ms = 2;
+  string reason = 3;
+}
+
+message VideoFrameMessage {
+  string session_id = 1;
+  int64 frame_id = 2;
+  int64 timestamp_utc_ms = 3;
+  int32 width = 4;
+  int32 height = 5;
+  string pixel_format = 6;
+  int32 stride = 7;
+  bool is_lossless_compressed = 8;
+  string compression = 9;
+  bytes frame_bytes = 10;
+}
+
+message AudioChunkMessage {
+  string session_id = 1;
+  int64 chunk_id = 2;
+  int64 timestamp_utc_ms = 3;
+  int32 sample_rate = 4;
+  int32 channels = 5;
+  int32 bits_per_sample = 6;
+  bytes pcm_bytes = 7;
+}
+
+message HealthPingMessage {
+  string session_id = 1;
+  int64 ping_id = 2;
+  int64 client_send_utc_ms = 3;
+}
+
+message HealthPongMessage {
+  string session_id = 1;
+  int64 ping_id = 2;
+  int64 client_send_utc_ms = 3;
+  int64 server_recv_utc_ms = 4;
+  int64 server_send_utc_ms = 5;
+}
+
+message DetectionResultMessage {
+  string session_id = 1;
+  int64 frame_id = 2;
+  int64 timestamp_utc_ms = 3;
+  RiskLevelProto risk_level = 4;
+  string risk_type = 5;
+  string message = 6;
+  repeated DetectionBoxMessage boxes = 7;
+  float score = 8;
+  string source = 9;
+  string raw_payload = 10;
+}
+
+message DetectionBoxMessage {
+  float x = 1;
+  float y = 2;
+  float width = 3;
+  float height = 4;
+  string label = 5;
+  float score = 6;
+}
+
+message AgentCommandMessage {
+  string command = 1;
+  string payload_json = 2;
+}
+
+message ErrorMessage {
+  int32 code = 1;
+  string message = 2;
+  bool recoverable = 3;
+}

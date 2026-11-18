@@ -1,0 +1,252 @@
+<Application x:Class="MeetingAgent.App.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Application.Resources>
+
+    <!-- ════════════════════════════════════════════════════
+         全局暗色调色板（命名常量，便于复用）
+         ════════════════════════════════════════════════════ -->
+    <SolidColorBrush x:Key="App.BgMain"      Color="#0D1117"/>
+    <SolidColorBrush x:Key="App.BgCard"      Color="#161B22"/>
+    <SolidColorBrush x:Key="App.BgInput"     Color="#21262D"/>
+    <SolidColorBrush x:Key="App.BgHover"     Color="#2D333B"/>
+    <SolidColorBrush x:Key="App.BorderColor" Color="#30363D"/>
+    <SolidColorBrush x:Key="App.TextPrimary" Color="#E6EDF3"/>
+    <SolidColorBrush x:Key="App.TextMuted"   Color="#8B949E"/>
+    <SolidColorBrush x:Key="App.AccentBlue"  Color="#58A6FF"/>
+
+    <!-- ════════════════════════════════════════════════════
+         ScrollBar 暗色 + 细线样式（覆盖全局）
+         ════════════════════════════════════════════════════ -->
+
+    <!-- 透明的 RepeatButton（轨道两端的箭头按钮我们用空白代替） -->
+    <Style x:Key="App.ScrollBarBlankButton" TargetType="RepeatButton">
+      <Setter Property="Background" Value="Transparent"/>
+      <Setter Property="Focusable" Value="False"/>
+      <Setter Property="IsTabStop" Value="False"/>
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="RepeatButton">
+            <Border Background="Transparent"/>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+
+    <!-- 拖动滑块 Thumb -->
+    <Style x:Key="App.ScrollBarThumb" TargetType="Thumb">
+      <Setter Property="OverridesDefaultStyle" Value="True"/>
+      <Setter Property="IsTabStop" Value="False"/>
+      <Setter Property="Focusable" Value="False"/>
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="Thumb">
+            <Border x:Name="bd" Margin="2,2" Background="#3A434D" CornerRadius="4"/>
+            <ControlTemplate.Triggers>
+              <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="bd" Property="Background" Value="#58A6FF"/>
+              </Trigger>
+              <Trigger Property="IsDragging" Value="True">
+                <Setter TargetName="bd" Property="Background" Value="#1F6FEB"/>
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+
+    <!-- 全局 ScrollBar 模板：极简、细线、暗色 -->
+    <Style TargetType="ScrollBar">
+      <Setter Property="OverridesDefaultStyle" Value="True"/>
+      <Setter Property="Background" Value="Transparent"/>
+      <Setter Property="BorderThickness" Value="0"/>
+      <Setter Property="Width" Value="8"/>
+      <Setter Property="Foreground" Value="#3A434D"/>
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="ScrollBar">
+            <Grid Background="Transparent">
+              <Track Name="PART_Track" IsDirectionReversed="True">
+                <Track.DecreaseRepeatButton>
+                  <RepeatButton Style="{StaticResource App.ScrollBarBlankButton}"
+                                Command="ScrollBar.PageUpCommand"/>
+                </Track.DecreaseRepeatButton>
+                <Track.IncreaseRepeatButton>
+                  <RepeatButton Style="{StaticResource App.ScrollBarBlankButton}"
+                                Command="ScrollBar.PageDownCommand"/>
+                </Track.IncreaseRepeatButton>
+                <Track.Thumb>
+                  <Thumb Style="{StaticResource App.ScrollBarThumb}"/>
+                </Track.Thumb>
+              </Track>
+            </Grid>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+      <Style.Triggers>
+        <Trigger Property="Orientation" Value="Horizontal">
+          <Setter Property="Width" Value="Auto"/>
+          <Setter Property="Height" Value="8"/>
+          <Setter Property="Template">
+            <Setter.Value>
+              <ControlTemplate TargetType="ScrollBar">
+                <Grid Background="Transparent">
+                  <Track Name="PART_Track" IsDirectionReversed="False">
+                    <Track.DecreaseRepeatButton>
+                      <RepeatButton Style="{StaticResource App.ScrollBarBlankButton}"
+                                    Command="ScrollBar.PageLeftCommand"/>
+                    </Track.DecreaseRepeatButton>
+                    <Track.IncreaseRepeatButton>
+                      <RepeatButton Style="{StaticResource App.ScrollBarBlankButton}"
+                                    Command="ScrollBar.PageRightCommand"/>
+                    </Track.IncreaseRepeatButton>
+                    <Track.Thumb>
+                      <Thumb Style="{StaticResource App.ScrollBarThumb}"/>
+                    </Track.Thumb>
+                  </Track>
+                </Grid>
+              </ControlTemplate>
+            </Setter.Value>
+          </Setter>
+        </Trigger>
+      </Style.Triggers>
+    </Style>
+
+    <!-- ════════════════════════════════════════════════════
+         ComboBoxItem 暗色样式（修复下拉项白字看不清）
+         ════════════════════════════════════════════════════ -->
+    <Style TargetType="ComboBoxItem">
+      <Setter Property="Background"  Value="#161B22"/>
+      <Setter Property="Foreground"  Value="#E6EDF3"/>
+      <Setter Property="Padding"     Value="10,7"/>
+      <Setter Property="BorderThickness" Value="0"/>
+      <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+      <Setter Property="VerticalContentAlignment" Value="Center"/>
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="ComboBoxItem">
+            <Border x:Name="bd" Background="{TemplateBinding Background}"
+                    Padding="{TemplateBinding Padding}" BorderThickness="0">
+              <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                TextBlock.Foreground="{TemplateBinding Foreground}"/>
+            </Border>
+            <ControlTemplate.Triggers>
+              <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="bd" Property="Background" Value="#1F6FEB"/>
+                <Setter Property="Foreground" Value="White"/>
+              </Trigger>
+              <Trigger Property="IsSelected" Value="True">
+                <Setter TargetName="bd" Property="Background" Value="#1F6FEB55"/>
+              </Trigger>
+              <Trigger Property="IsHighlighted" Value="True">
+                <Setter TargetName="bd" Property="Background" Value="#1F6FEB"/>
+                <Setter Property="Foreground" Value="White"/>
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+
+    <!-- ════════════════════════════════════════════════════
+         ComboBox 暗色样式（按钮 + 弹出层）
+         ════════════════════════════════════════════════════ -->
+    <Style TargetType="ComboBox">
+      <Setter Property="Background"  Value="#21262D"/>
+      <Setter Property="Foreground"  Value="#E6EDF3"/>
+      <Setter Property="BorderBrush" Value="#30363D"/>
+      <Setter Property="BorderThickness" Value="1"/>
+      <Setter Property="Padding" Value="10,7"/>
+      <Setter Property="FontSize" Value="13"/>
+      <Setter Property="VerticalContentAlignment" Value="Center"/>
+      <Setter Property="SnapsToDevicePixels" Value="True"/>
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="ComboBox">
+            <Grid>
+              <!-- 关键：ToggleButton 必须显式继承 ComboBox.Background，否则会用系统默认浅色 -->
+              <ToggleButton x:Name="toggle"
+                            Grid.Column="2"
+                            Focusable="False"
+                            ClickMode="Press"
+                            Background="{TemplateBinding Background}"
+                            Foreground="{TemplateBinding Foreground}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
+                <ToggleButton.Template>
+                  <ControlTemplate TargetType="ToggleButton">
+                    <Border x:Name="border"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="1" CornerRadius="6">
+                      <Grid>
+                        <Grid.ColumnDefinitions>
+                          <ColumnDefinition Width="*"/>
+                          <ColumnDefinition Width="22"/>
+                        </Grid.ColumnDefinitions>
+                        <ContentPresenter Grid.Column="0" Margin="10,0,0,0"
+                                          VerticalAlignment="Center"
+                                          TextBlock.Foreground="{TemplateBinding Foreground}"/>
+                        <Path Grid.Column="1" Width="10" Height="6"
+                              HorizontalAlignment="Center" VerticalAlignment="Center"
+                              Stretch="Uniform"
+                              Fill="#8B949E"
+                              Data="M 0 0 L 5 6 L 10 0 Z"/>
+                      </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                      <Trigger Property="IsMouseOver" Value="True">
+                        <Setter TargetName="border" Property="BorderBrush" Value="#58A6FF"/>
+                      </Trigger>
+                    </ControlTemplate.Triggers>
+                  </ControlTemplate>
+                </ToggleButton.Template>
+                <Border Background="Transparent" Padding="{TemplateBinding Padding}">
+                  <ContentPresenter Name="ContentSite"
+                                    Content="{TemplateBinding SelectionBoxItem}"
+                                    ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                    ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                    Margin="0" VerticalAlignment="Center"
+                                    HorizontalAlignment="Left"
+                                    TextBlock.Foreground="{TemplateBinding Foreground}"/>
+                </Border>
+              </ToggleButton>
+
+              <!-- 隐藏的真实文本框（必需，否则键盘选择失效） -->
+              <TextBox x:Name="PART_EditableTextBox"
+                       Visibility="Hidden"
+                       HorizontalAlignment="Left" VerticalAlignment="Center"
+                       Margin="3,0,23,0" Focusable="True"
+                       Background="Transparent"
+                       Foreground="{TemplateBinding Foreground}"
+                       IsReadOnly="{TemplateBinding IsReadOnly}"/>
+
+              <!-- 弹出列表 -->
+              <Popup Name="Popup" Placement="Bottom" IsOpen="{TemplateBinding IsDropDownOpen}"
+                     AllowsTransparency="True" Focusable="False" PopupAnimation="Slide">
+                <Grid Name="DropDown" SnapsToDevicePixels="True"
+                      MinWidth="{TemplateBinding ActualWidth}"
+                      MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                  <Border x:Name="DropDownBorder"
+                          Background="#161B22"
+                          BorderThickness="1"
+                          BorderBrush="#30363D"
+                          CornerRadius="6" Margin="0,4,0,0">
+                    <Border.Effect>
+                      <DropShadowEffect Color="Black" BlurRadius="12" ShadowDepth="0" Opacity="0.5"/>
+                    </Border.Effect>
+                    <ScrollViewer Margin="2" SnapsToDevicePixels="True">
+                      <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained"/>
+                    </ScrollViewer>
+                  </Border>
+                </Grid>
+              </Popup>
+            </Grid>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+
+  </Application.Resources>
+</Application>

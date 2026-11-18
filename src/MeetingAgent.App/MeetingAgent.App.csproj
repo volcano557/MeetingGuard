@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MeetingAgent.Alerting\MeetingAgent.Alerting.csproj" />
+    <ProjectReference Include="..\MeetingAgent.Audio\MeetingAgent.Audio.csproj" />
+    <ProjectReference Include="..\MeetingAgent.Capture\MeetingAgent.Capture.csproj" />
+    <ProjectReference Include="..\MeetingAgent.Core\MeetingAgent.Core.csproj" />
+    <ProjectReference Include="..\MeetingAgent.Infrastructure\MeetingAgent.Infrastructure.csproj" />
+    <ProjectReference Include="..\MeetingAgent.Transport\MeetingAgent.Transport.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.4" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.4" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="9.0.4" />
+    <PackageReference Include="Serilog" Version="4.2.0" />
+    <PackageReference Include="Serilog.Extensions.Hosting" Version="9.0.0" />
+    <!-- DirectShow 摄像头捕获（WinRT MSMF 在此设备上无法获帧，改用 DirectShow 后端）-->
+    <PackageReference Include="OpenCvSharp4.Windows" Version="4.10.0.20241107" />
+    <PackageReference Include="OpenCvSharp4.runtime.win" Version="4.10.0.20241107" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="9.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>

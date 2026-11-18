@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <UseWinRT>true</UseWinRT>
+    <CsWinRTEnabled>false</CsWinRTEnabled>
+    <CsWinRTGenerateProjection>false</CsWinRTGenerateProjection>
+    <CsWinRTWindowsMetadata Condition="Exists('C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.26100.0\Windows.winmd')">C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.26100.0\Windows.winmd</CsWinRTWindowsMetadata>
+    <CsWinRTWindowsMetadata Condition="'$(CsWinRTWindowsMetadata)' == '' and Exists('C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.22621.0\Windows.winmd')">C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.22621.0\Windows.winmd</CsWinRTWindowsMetadata>
+    <CsWinRTWindowsMetadata Condition="'$(CsWinRTWindowsMetadata)' == '' and Exists('C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.19041.0\Windows.winmd')">C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.19041.0\Windows.winmd</CsWinRTWindowsMetadata>
+    <WindowsSdkDir Condition="'$(WindowsSdkDir)' == '' and Exists('C:\Program Files (x86)\Windows Kits\10\Platforms\UAP\10.0.19041.0\Platform.xml')">C:\Program Files (x86)\Windows Kits\10\</WindowsSdkDir>
+    <WindowsSdkDir Condition="'$(WindowsSdkDir)' != '' and !Exists('$(WindowsSdkDir)Platforms\UAP\10.0.19041.0\Platform.xml') and Exists('C:\Program Files (x86)\Windows Kits\10\Platforms\UAP\10.0.19041.0\Platform.xml')">C:\Program Files (x86)\Windows Kits\10\</WindowsSdkDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MeetingAgent.Core\MeetingAgent.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Windows.CsWinRT" Version="2.2.0" />
+    <PackageReference Include="Vortice.Direct3D11" Version="3.6.2" />
+    <PackageReference Include="Vortice.DXGI" Version="3.6.2" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.4" />
+    <PackageReference Include="System.Drawing.Common" Version="9.0.4" />
+  </ItemGroup>
+</Project>

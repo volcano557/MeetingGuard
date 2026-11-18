@@ -1,0 +1,39 @@
+# Visual Studio / .NET build output
+.vs/
+[Bb]in/
+[Oo]bj/
+artifacts/
+TestResults/
+
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# IDE settings
+.vscode/
+.idea/
+
+# Runtime data
+logs/
+meetingguard.db
+meetingguard.db-shm
+meetingguard.db-wal
+audit_logs_*.json
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+
+# Logs and temporary files
+*.log
+*.tmp
+*.bak
+.DS_Store
+Thumbs.db
+
+# Accidental zero-byte command artifact in the original folder
+/dotnet
