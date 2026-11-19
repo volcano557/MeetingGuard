@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="MeetingGuard：面向视频会议的 AIGC 虚假内容识别与面部隐私保护系统。"
+    />
+    <meta name="theme-color" content="#07152d" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%2325bdf4'/%3E%3Cpath d='M32 10 49 17v14c0 12-6.7 21-17 25-10.3-4-17-13-17-25V17l17-7Z' fill='none' stroke='white' stroke-width='4'/%3E%3C/svg%3E" />
+    <title>MeetingGuard | AIGC 视频会议安全防护</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">跳到主要内容</a>
+
+    <header class="site-header" aria-label="网站页眉">
+      <div class="header-inner">
+        <a class="brand" href="#overview" aria-label="MeetingGuard 首页">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 48 48" role="img">
+              <path d="M24 4 39 10v12c0 10.5-5.9 18.4-15 22-9.1-3.6-15-11.5-15-22V10L24 4Z" />
+              <path d="M24 13v22" />
+            </svg>
+          </span>
+          <span>MeetingGuard</span>
+        </a>
+
+        <nav class="site-nav" aria-label="主导航">
+          <a href="#overview">项目概览</a>
+          <a href="#results">技术成果</a>
+          <a href="#capabilities">系统能力</a>
+        </nav>
+
+        <a
+          class="github-link"
+          href="https://github.com/volcano557/MeetingGuard"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.87c-2.78.6-3.37-1.18-3.37-1.18-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.64-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0 1 12 6.84c.85 0 1.71.11 2.51.34 1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.86V21c0 .27.18.58.69.48A10 10 0 0 0 12 2Z" />
+          </svg>
+          <span>GitHub</span>
+        </a>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <section class="hero" id="overview" aria-labelledby="hero-title">
+        <div class="hero-lines" aria-hidden="true"></div>
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <h1 id="hero-title">让视频会议中的<br />真实，<span>更可信</span></h1>
+            <p>
+              面向视频会议的 AIGC 虚假内容识别与面部隐私保护系统，覆盖主动防护、实时检测、风险预警与审计复盘。
+            </p>
+            <div class="hero-actions">
+              <button class="button button-primary" type="button" data-play-video>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 11 7-11 7V5Z" /></svg>
+                播放项目介绍
+              </button>
+              <a class="button button-secondary" href="#results">查看技术成果</a>
+            </div>
+          </div>
+
+          <div class="video-panel" id="project-video">
+            <div class="video-panel-heading">
+              <div>
+                <strong>MeetingGuard 三分钟项目介绍</strong>
+                <span>项目背景 · 核心技术 · 运行成果</span>
+              </div>
+              <span class="video-duration">03:00</span>
+            </div>
+            <div class="video-frame">
+              <video
+                controls
+                playsinline
+                preload="metadata"
+                poster="images/video-cover.png"
+                aria-label="MeetingGuard 三分钟项目介绍视频"
+              >
+                <source src="media/meetingguard-introduction.mp4" type="video/mp4" />
+                您的浏览器不支持 HTML5 视频播放。请
+                <a href="media/meetingguard-introduction.mp4">下载项目介绍视频</a>。
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <div class="container hero-proof" aria-label="项目核心成果预览">
+          <div><strong>约 30 FPS</strong><span>实时面部保护</span></div>
+          <div><strong>99.85%</strong><span>压缩场景平均 AUROC</span></div>
+          <div><strong>95.18%</strong><span>语义风险识别 F1</span></div>
+        </div>
+      </section>
+
+      <section class="results section" id="results" aria-labelledby="results-title">
+        <div class="container">
+          <div class="section-heading">
+            <h2 id="results-title">经验证的技术成果</h2>
+            <p>结果来自作品设计文档中的实验与功能测试，覆盖隐私保护、视频检测、语音转写和语义研判。</p>
+          </div>
+
+          <dl class="metric-rail">
+            <div><dt>约 30 FPS</dt><dd>实时面部保护</dd></div>
+            <div><dt>99.85%</dt><dd>压缩场景平均 AUROC</dd></div>
+            <div><dt>97.7%</dt><dd>扩散换脸迁移 AUROC</dd></div>
+            <div><dt>95.18%</dt><dd>语义风险识别 F1</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="capabilities section" id="capabilities" aria-labelledby="capabilities-title">
+        <div class="container">
+          <div class="section-heading">
+            <h2 id="capabilities-title">三条协同防线</h2>
+            <p>从保护真实参会者，到识别虚假画面，再到定位风险话术及其发言主体。</p>
+          </div>
+
+          <div class="capability-grid">
+            <article class="capability">
+              <figure><img src="images/face-privacy.png" alt="在线实时面部隐私保护界面" loading="lazy" /></figure>
+              <h3>实时面部隐私保护</h3>
+              <p>以离线通用扰动模板结合姿态自适应 UV 映射，在保持会议画面可用性的同时降低身份特征泄露风险。</p>
+            </article>
+
+            <article class="capability">
+              <figure><img src="images/aigc-detection.png" alt="AIGC 虚假视频高风险告警界面" loading="lazy" /></figure>
+              <h3>时空一致性 AIGC 检测</h3>
+              <p>联合分析面部局部伪影与连续帧动态异常，对换脸、数字人和压缩传输后的伪造内容进行实时研判。</p>
+            </article>
+
+            <article class="capability">
+              <figure><img src="images/semantic-risk.png" alt="实时语音转写和说话人标签界面" loading="lazy" /></figure>
+              <h3>语义风险识别与主体溯源</h3>
+              <p>融合流式语音转写、大模型语义分析、敏感词规则与说话人表征，让风险事件可定位、可解释、可复盘。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="pipeline section" id="architecture" aria-labelledby="pipeline-title">
+        <div class="container">
+          <div class="section-heading">
+            <h2 id="pipeline-title">从会议采集到风险闭环</h2>
+            <p>Windows 客户端将音视频采集、低时延传输、AI 检测服务、即时告警和审计留痕连接为完整处理链。</p>
+          </div>
+
+          <ol class="pipeline-flow" aria-label="MeetingGuard 处理流程">
+            <li>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h13v10H3V7Zm13 3 5-3v10l-5-3v-4Z" /></svg>
+              <span>音视频采集</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5-5 7 5 7M16 5l5 7-5 7M14 3l-4 18" /></svg>
+              <span>HTTP / gRPC</span>
+            </li>
+            <li class="pipeline-primary">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5 9-5Zm-9 9 9 5 9-5M3 16l9 5 9-5" /></svg>
+              <span>AI 检测服务</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 7h18s-3 0-3-7ZM9 19h6" /></svg>
+              <span>实时告警</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h14v18H5V3Zm4 5h6M9 12h6M9 16h4" /></svg>
+              <span>审计与复盘</span>
+            </li>
+          </ol>
+
+          <div class="pipeline-actions">
+            <a class="button button-primary" href="https://github.com/volcano557/MeetingGuard" target="_blank" rel="noreferrer">
+              查看 GitHub 仓库
+            </a>
+            <a class="button button-secondary" href="https://github.com/volcano557/MeetingGuard#readme" target="_blank" rel="noreferrer">
+              阅读完整技术说明
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <span>MeetingGuard · 视频会议智能安全防护平台</span>
+        <span>竞赛与研究原型</span>
+      </div>
+    </footer>
+  </body>
+</html>
