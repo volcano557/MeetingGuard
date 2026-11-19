@@ -15,6 +15,22 @@
 
 </div>
 
+## 🎬 三分钟项目介绍
+
+<p align="center">
+  <a href="https://github.com/volcano557/MeetingGuard/releases/download/project-demo-v1/3min.mp4">
+    <img src="docs/images/video-cover.png" width="900" alt="点击观看 MeetingGuard 三分钟项目介绍视频" />
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/volcano557/MeetingGuard/releases/download/project-demo-v1/3min.mp4"><strong>▶ 点击封面观看或下载完整介绍视频（MP4，88.3 MB）</strong></a>
+  <br />
+  <a href="https://github.com/volcano557/MeetingGuard/releases/tag/project-demo-v1">查看视频发布页与项目简介</a>
+</p>
+
+> GitHub README 不提供稳定的内嵌视频播放器，因此视频以 Release 资产保存，并通过可点击封面访问。这样既保留原始画质，也不会让大文件进入 Git 历史、拖慢仓库克隆。
+
 ## 项目简介
 
 生成式人工智能使换脸、数字人、语音克隆和诱导式风险话术更容易进入实时会议。传统方案通常只解决会前认证或会后取证，难以同时覆盖会议中的身份冒用、人脸隐私泄露与内容风险传播。
